@@ -1,0 +1,139 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4785294907209268795
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2370204958068478289}
+  - component: {fileID: 9089535623076294116}
+  - component: {fileID: 2819107174799734433}
+  - component: {fileID: 6047239762381393042}
+  m_Layer: 0
+  m_Name: DebugText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2370204958068478289
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4785294907209268795}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 335.5, y: 0}
+  m_SizeDelta: {x: 671, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &9089535623076294116
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4785294907209268795}
+  m_CullTransparentMesh: 0
+--- !u!114 &2819107174799734433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4785294907209268795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 24
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 1
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 0
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tempus,
+    dolor sit amet ultrices consequat, nibh lectus fringilla turpis, eu feugiat felis
+    erat et felis. Mauris pellentesque ipsum dui, non ultricies nunc rutrum non. Morbi
+    purus mauris, congue ut pretium sit amet, gravida a nunc. Aenean quis ipsum nec
+    enim malesuada luctus. Mauris eget rutrum purus. Nullam a laoreet nibh. Morbi
+    mollis sem ut libero lobortis, a aliquet tortor porttitor. Suspendisse finibus
+    massa non nisl aliquam pharetra. Aenean sodales sollicitudin nulla ac convallis.
+    Phasellus faucibus venenatis felis, lacinia hendrerit augue tempor iaculis. Vestibulum
+    ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nunc
+    id arcu diam. Morbi tristique lacus eu lacus vestibulum, ut viverra mi bibendum.
+    Praesent molestie in augue ut efficitur. Nunc neque tortor, facilisis id facilisis
+    in, tristique at leo. Duis sed faucibus nunc, vitae aliquet enim.\r\n\r\nNulla
+    eu nulla aliquet, laoreet justo at, lobortis leo. Donec non risus est. Nulla nec
+    hendrerit magna, non bibendum sem. Donec sit amet elementum nulla. Fusce vel fringilla
+    eros. Fusce fermentum fringilla sapien in porttitor. Integer eleifend aliquet
+    sapien bibendum accumsan. Morbi tincidunt erat aliquam felis posuere vehicula.
+    Nunc sed ligula nec nisi vulputate ultrices non dapibus quam. Fusce volutpat sagittis
+    faucibus. Pellentesque nunc leo, auctor vel imperdiet vitae, porta quis orci.
+    Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus
+    mus. Donec posuere at leo quis tristique. Quisque imperdiet, risus non iaculis
+    molestie, dolor est malesuada urna, sed efficitur justo ex sed diam. Nullam ut
+    eleifend lacus.\r\n\r\nDuis diam velit, pellentesque quis blandit nec, faucibus
+    non orci. Nam non orci eu metus accumsan cursus eget vitae nulla. Vivamus sed
+    vehicula nisi, at pretium libero. Nulla facilisi. Aliquam scelerisque, sapien
+    eu blandit fermentum, purus nisi consectetur nunc, id laoreet eros nisi sed massa.
+    Suspendisse porttitor libero facilisis eleifend varius. Vivamus sit amet mi vehicula
+    lorem laoreet porta. Integer lobortis felis et justo dapibus, ut eleifend ipsum
+    porttitor. Nunc a ipsum nisi. Sed ornare pharetra turpis, vitae pellentesque ligula
+    ultrices in. Maecenas porttitor ipsum a purus pulvinar, sed euismod mauris rutrum.
+    Sed id iaculis ipsum, et iaculis lacus. Proin auctor, lectus id mattis facilisis,
+    magna ex efficitur ex, ac tempor enim risus vitae neque. Sed vulputate tristique
+    justo.\r\n\r\nNunc eget velit faucibus, cursus lorem id, faucibus ante. Nunc rhoncus
+    sed nisl et pulvinar. Vivamus laoreet laoreet sapien ut sollicitudin. Proin tincidunt
+    non ipsum sed sodales. Vestibulum eu posuere enim, at rhoncus magna. Mauris vitae
+    ipsum interdum, viverra augue eget, aliquam turpis. Proin tristique mi a libero
+    placerat cursus. Phasellus iaculis augue sit amet mi sagittis, ut bibendum eros
+    suscipit. Maecenas cursus est vitae vestibulum hendrerit.\r\n\r\nVestibulum mi
+    sapien, lobortis a orci nec, accumsan faucibus massa. Cras vitae malesuada orci.
+    Cras at tristique velit. Nam porta risus eros, et efficitur nisl mollis nec. Donec
+    tincidunt porta efficitur. Nulla facilisi. Vestibulum viverra lectus sit amet
+    elit ultrices interdum. Curabitur in tempor turpis, sit amet tempor augue. Praesent
+    feugiat sollicitudin metus, in maximus lectus pharetra rhoncus. Phasellus massa
+    urna, tempus eu orci ut, molestie interdum velit. In sit amet neque sit amet nibh
+    vestibulum scelerisque ac eget nulla. Maecenas a nibh ipsum. "
+--- !u!114 &6047239762381393042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4785294907209268795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1741964061, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 0
+  m_VerticalFit: 2
