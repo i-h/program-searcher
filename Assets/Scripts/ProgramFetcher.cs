@@ -11,8 +11,10 @@ public class ProgramFetcher : MonoBehaviour
     private int _limit = 10;
     private int _offset = 0;
     private string _lastSearch = "";
+    private float _progress = 1f;
 
     public static bool SearchInProgress { get; private set; }
+    public AuthKeys Authentication;
 
     #region Singleton
     public static ProgramFetcher Instance { get { return _instance; } }
@@ -37,8 +39,14 @@ public class ProgramFetcher : MonoBehaviour
     /// </summary>
     /// <param name="query">Search query</param>
       
+        public float GetProgress()
+    {
+        return _progress;
+    }
+
     public void Search(string query)
     {
+        ResultsDisplay.Instance.ShowListScreen();
         Search(query, false);
     }
 
@@ -90,36 +98,38 @@ public class ProgramFetcher : MonoBehaviour
 
             while (!request.isDone)
             {
+                _progress = request.downloadProgress;
                 yield return new WaitForEndOfFrame();
             }
 
-            string content = "";
+            _progress = 1f;
+
+            // Start reading the results
 
             if (request.isNetworkError || request.responseCode != 200)
             {
-                Debug.Log("A network error occurred: " + request.error);
-                content = request.error;
+                Debug.Log("An error occurred: " + request.error);
                 Debug.Log(request.downloadHandler.text);
+
+                ResultsDisplay.Instance.DisplayError(string.Format("Response code {0}\nSomething went wrong! {1}\nResponse contents: {2}", request.responseCode, request.error, request.downloadHandler.text));
             } else
             {
-                content = request.downloadHandler.text;
-                Debug.Log(content);
-                entries =  SearchParser.ParseSearch(content);                
-            }
+                entries =  SearchParser.ParseSearch(request.downloadHandler.text);
 
-            if (entries.Count == 0)
-            {
-                ResultsDisplay.Instance.DisplayError("No search results for '" + _lastSearch + "' :(");
-            }
-            else
-            {                
-                ResultsDisplay.Instance.DisplayResults(entries, append);
+                // Check if our search resulted in no results
+                if (entries.Count == 0)
+                {
+                    ResultsDisplay.Instance.DisplayError("No search results for '" + _lastSearch + "' :(");
+                }
+                else
+                {
+                    ResultsDisplay.Instance.DisplayResults(entries, append);
+                }
             }
 
         }
         SearchInProgress = false;
     }
-
     private string GetSearchString(string query)
     {
         string searchURL = "";
@@ -132,6 +142,7 @@ public class ProgramFetcher : MonoBehaviour
     private APIKeys GetAPIKeys()
     {
         APIKeys keys = new APIKeys();
+#if USING_KEY_FILE
         string keyFile;
         using (StreamReader sr = new StreamReader("key"))
         {
@@ -148,14 +159,23 @@ public class ProgramFetcher : MonoBehaviour
             Debug.LogFormat("<color=#060>API Keys read OK</color>\nApp ID: [{0}] App Key: [{1}]", keys.AppID, keys.AppKey);
         } else
         {
-            Debug.LogErrorFormat("Problem with reading the API keys. Please check or create the keys file in project root.\n(Rows from file: {0})", keyRows.Length);
+            string error = string.Format("Problem with reading the API keys. Please check or create the keys file in project root.\n(Rows from file: {0})", keyRows.Length);
+            Debug.LogError(error);
+            ResultsDisplay.Instance.DisplayError(error);
         }
+#else
+        if (Authentication != null)
+        {
+            keys = Authentication.Keys;
+        }
+#endif
         return keys;
 
     }
 }
 
-struct APIKeys
+[System.Serializable]
+public struct APIKeys
 {
     public string AppID;
     public string AppKey;

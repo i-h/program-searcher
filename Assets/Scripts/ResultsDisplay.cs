@@ -44,6 +44,7 @@ public class ResultsDisplay : MonoBehaviour
     public RectTransform ContentContainer;
     public ResultRowDisplay ResultRow;
     public Text ErrorRow;
+    public LoadingIcon LoadingBar;
 
     public RectTransform ListDisplay;
     public DetailsDisplay DetailsDisplay;
@@ -53,10 +54,14 @@ public class ResultsDisplay : MonoBehaviour
     private bool _scrollCooldown = false;
 
     private Screen _currentScreen = Screen.List;
-
+    
+    /// <summary>
+    /// Display a list of ProgramEntry-objects in this ResultDisplay
+    /// </summary>
+    /// <param name="results">The list of ProgramEntry-objects to visualize</param>
+    /// <param name="append">false = clear the list before loading new ones (now cleared in DisplayLoadingBar)</param>
     public void DisplayResults(List<ProgramEntry> results, bool append)
-    {
-        if(!append) ClearList();
+    {        
         foreach (ProgramEntry entry in results)
         {
             if (!_listItems.Contains(entry))
@@ -70,6 +75,10 @@ public class ResultsDisplay : MonoBehaviour
         ActivateScrollCooldown();
     }
 
+    /// <summary>
+    /// Display an error (or information) message on this ResultsDisplay
+    /// </summary>
+    /// <param name="content">The text to be shown</param>
     public void DisplayError(string content)
     {
         ClearList();
@@ -88,11 +97,21 @@ public class ResultsDisplay : MonoBehaviour
             
     }
 
+    /// <summary>
+    /// Display a loading bar that reads the ProgramFetcher progress
+    /// </summary>
+    /// <param name="append">false = clear the list before adding the Loading bar</param>
     public void DisplayLoadingBar(bool append)
     {
-        Debug.Log("Loading!");
+        if (!append) ClearList();
+        Instantiate<LoadingIcon>(LoadingBar, ContentContainer);
+        if (append) _scrollView.verticalNormalizedPosition = 0;
     }
 
+    /// <summary>
+    /// React to the list being scrolled
+    /// </summary>
+    /// <param name="position">Current normalized position of the list</param>
     public void OnScroll(Vector2 position)
     {
         if (position.y <= 0) {
@@ -102,10 +121,7 @@ public class ResultsDisplay : MonoBehaviour
 
     private void Update()
     {
-        //Debug.Log(_scrollView.verticalNormalizedPosition);
-        if(_scrollView.verticalNormalizedPosition <= 0) {
-            //FetchNext();
-        }
+        if (Input.GetKeyDown(KeyCode.Escape)) OnBackButtonPressed();
     }
 
     private void FetchNext()
@@ -130,20 +146,34 @@ public class ResultsDisplay : MonoBehaviour
         _scrollCooldown = false;
     }
 
+    /// <summary>
+    /// Populate the DetailsDisplay with the passed program's info
+    /// </summary>
+    /// <param name="program">Data to populate the DetailsDisplay with</param>
     public void ShowDetailsFor(ProgramEntry program)
     {
         DetailsDisplay.Display(program);
         ShowDetailsScreen();
     }
 
+    /// <summary>
+    /// Display the search results list screen
+    /// </summary>
     public void ShowListScreen()
     {
         ShowScreen(Screen.List);
     }
+    /// <summary>
+    /// Display the program details screen
+    /// </summary>
     public void ShowDetailsScreen()
     {
         ShowScreen(Screen.Details);
     }
+    /// <summary>
+    /// Display a screen matching the passed enumerator
+    /// </summary>
+    /// <param name="target">Screen to display</param>
     public void ShowScreen(Screen target)
     {
         switch (target)
@@ -164,5 +194,17 @@ public class ResultsDisplay : MonoBehaviour
                 break;
         }
         _currentScreen = target;
+    }
+
+
+    void OnBackButtonPressed()
+    {
+        if (_currentScreen != Screen.List)
+        {
+            ShowListScreen();
+        } else
+        {
+            Application.Quit();
+        }
     }
 }

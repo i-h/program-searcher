@@ -11,6 +11,9 @@ public class SearchInputField : MonoBehaviour
     {
         _input = GetComponent<InputField>();
     }
+    /// <summary>
+    /// Update the contents of this InputField to the ProgramFetcher.SearchInput variable
+    /// </summary>
     public void UpdateSearchInput()
     {
         ProgramFetcher.SearchInput = _input.text;

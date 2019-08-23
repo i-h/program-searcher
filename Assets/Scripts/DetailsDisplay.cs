@@ -22,6 +22,10 @@ public class DetailsDisplay : MonoBehaviour
         _rectTransform = GetComponent<RectTransform>();
     }
 
+    /// <summary>
+    /// Display a program's information on this DetailsDisplay
+    /// </summary>
+    /// <param name="program">ProgramEntry containing the information to be displayed</param>
     public void Display(ProgramEntry program)
     {
         _currentProgram = program;
@@ -53,11 +57,18 @@ public class DetailsDisplay : MonoBehaviour
         return "https://areena.yle.fi/" + ID;
     }
 
+    /// <summary>
+    /// Open the external link bound to the currently displayed program
+    /// </summary>
     public void OpenLink()
     {
-        Application.OpenURL(URL);
+        if(URL != "") Application.OpenURL(URL);
     }
 
+    /// <summary>
+    /// Get the RectTransform of this DetailsDisplay
+    /// </summary>
+    /// <returns>RectTransform of the DetailsDisplay</returns>
     public RectTransform GetRectTransform()
     {
         return _rectTransform;
