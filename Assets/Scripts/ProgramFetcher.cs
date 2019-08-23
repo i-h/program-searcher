@@ -32,11 +32,20 @@ public class ProgramFetcher : MonoBehaviour
     }
     #endregion
 
+    /// <summary>
+    /// Search for programs with the Yle API with the given search query
+    /// </summary>
+    /// <param name="query">Search query</param>
+      
     public void Search(string query)
     {
         Search(query, false);
     }
 
+    /// <summary>
+    /// Fetch the next set of search results based on last search
+    /// </summary>
+    
     public void SearchNext()
     {
         Search(_lastSearch, true);

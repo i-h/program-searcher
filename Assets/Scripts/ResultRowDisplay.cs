@@ -18,11 +18,6 @@ public class ResultRowDisplay : MonoBehaviour
     }
     public void Expand()
     {
-        ResultsDisplay.Instance.ShowDetailsScreen();
-    }
-
-    public void Collapse()
-    {
-        ResultsDisplay.Instance.ShowListScreen();
+        ResultsDisplay.Instance.ShowDetailsFor(_entry);
     }
 }

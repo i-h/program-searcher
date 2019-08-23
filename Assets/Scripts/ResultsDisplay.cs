@@ -36,6 +36,7 @@ public class ResultsDisplay : MonoBehaviour
 
         _scrollView = GetComponent<ScrollRect>();
         ShowListScreen();
+        ClearList();
     }
 
     #endregion
@@ -45,11 +46,13 @@ public class ResultsDisplay : MonoBehaviour
     public Text ErrorRow;
 
     public RectTransform ListDisplay;
-    public RectTransform DetailsDisplay;
+    public DetailsDisplay DetailsDisplay;
 
     private List<ProgramEntry> _listItems = new List<ProgramEntry>();
     private ScrollRect _scrollView;
     private bool _scrollCooldown = false;
+
+    private Screen _currentScreen = Screen.List;
 
     public void DisplayResults(List<ProgramEntry> results, bool append)
     {
@@ -107,7 +110,7 @@ public class ResultsDisplay : MonoBehaviour
 
     private void FetchNext()
     {
-        if (!_scrollCooldown && !ProgramFetcher.SearchInProgress && _listItems.Count > 0)
+        if (_currentScreen == Screen.List && !_scrollCooldown && !ProgramFetcher.SearchInProgress && _listItems.Count > 0)
         {
             ActivateScrollCooldown();
 
@@ -127,6 +130,12 @@ public class ResultsDisplay : MonoBehaviour
         _scrollCooldown = false;
     }
 
+    public void ShowDetailsFor(ProgramEntry program)
+    {
+        DetailsDisplay.Display(program);
+        ShowDetailsScreen();
+    }
+
     public void ShowListScreen()
     {
         ShowScreen(Screen.List);
@@ -142,15 +151,18 @@ public class ResultsDisplay : MonoBehaviour
             case Screen.List:
                 ListDisplay.gameObject.SetActive(true);
                 DetailsDisplay.gameObject.SetActive(false);
+                _scrollView.content = ListDisplay;
                 break;
             case Screen.Details:
                 ListDisplay.gameObject.SetActive(false);
                 DetailsDisplay.gameObject.SetActive(true);
+                _scrollView.content = DetailsDisplay.GetRectTransform();
                 break;
             case Screen.None:
                 ListDisplay.gameObject.SetActive(false);
                 DetailsDisplay.gameObject.SetActive(false);
                 break;
         }
+        _currentScreen = target;
     }
 }
