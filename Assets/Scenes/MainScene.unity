@@ -311,7 +311,7 @@ PrefabInstance:
     - target: {fileID: 2370204958068478289, guid: 9f393762cb8b60a42bbd4e5bb1e8a7f6,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 335.50003
+      value: 398.23657
       objectReference: {fileID: 0}
     - target: {fileID: 2370204958068478289, guid: 9f393762cb8b60a42bbd4e5bb1e8a7f6,
         type: 3}
@@ -321,7 +321,7 @@ PrefabInstance:
     - target: {fileID: 2370204958068478289, guid: 9f393762cb8b60a42bbd4e5bb1e8a7f6,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 639.00006
+      value: 764.47314
       objectReference: {fileID: 0}
     - target: {fileID: 2370204958068478289, guid: 9f393762cb8b60a42bbd4e5bb1e8a7f6,
         type: 3}
@@ -1119,8 +1119,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1884967332}
   m_HandleRect: {fileID: 1884967331}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.48243204
+  m_Value: 0.99999976
+  m_Size: 0.5271985
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2052,7 +2052,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 720, y: 1280}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.8
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
