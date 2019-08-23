@@ -14,6 +14,7 @@ public class ProgramFetcher : MonoBehaviour
     private float _progress = 1f;
 
     public static bool SearchInProgress { get; private set; }
+    public static bool EndOfResults { get; private set; }
     public AuthKeys Authentication;
 
     #region Singleton
@@ -62,6 +63,7 @@ public class ProgramFetcher : MonoBehaviour
     private void Search(string query, bool append)
     {
         SearchInProgress = true;
+        if (!append) EndOfResults = false;
         string searchQuery = (query.Length > 0) ? query : SearchInput;
 
         if (searchQuery.Length == 0)
@@ -123,6 +125,7 @@ public class ProgramFetcher : MonoBehaviour
                 }
                 else
                 {
+                    if (entries.Count < _limit) EndOfResults = true;
                     ResultsDisplay.Instance.DisplayResults(entries, append);
                 }
             }
@@ -135,7 +138,7 @@ public class ProgramFetcher : MonoBehaviour
         string searchURL = "";
         APIKeys keys = GetAPIKeys();
 
-        searchURL = string.Format("{0}?app_id={1}&app_key={2}&limit={3}&offset={4}&q={5}", _baseURL, keys.AppID, keys.AppKey, _limit, _offset, query);
+        searchURL = string.Format("{0}?app_id={1}&app_key={2}&limit={3}&offset={4}&q={5}", _baseURL, keys.AppID, keys.AppKey, _limit, _offset, UnityWebRequest.EscapeURL(query));
         Debug.Log("URL: " + searchURL);
         return searchURL;
     }

@@ -126,7 +126,7 @@ public class ResultsDisplay : MonoBehaviour
 
     private void FetchNext()
     {
-        if (_currentScreen == Screen.List && !_scrollCooldown && !ProgramFetcher.SearchInProgress && _listItems.Count > 0)
+        if (_currentScreen == Screen.List && !_scrollCooldown && !ProgramFetcher.EndOfResults && !ProgramFetcher.SearchInProgress && _listItems.Count > 0)
         {
             ActivateScrollCooldown();
 
